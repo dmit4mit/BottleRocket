@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BottleRocket</string>
+    <string name="item_store_address">Address:</string>
+    <string name="item_store_phone">Phone:</string>
 </resources>
