@@ -7,4 +7,5 @@ import org.koin.core.inject
 
 class StoreListViewModel : ViewModel(), KoinComponent {
     val storeRepository: StoreRepository by inject()
+
 }
