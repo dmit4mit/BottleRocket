@@ -13,15 +13,14 @@ val networkModule = module {
     factory { provideStoreService(get()) }
 }
 
-fun provideStoreService(retrofit: Retrofit): StoreService = retrofit.create(StoreService::class.java)
-
 fun provideOkHttpClient(): OkHttpClient =
     OkHttpClient().newBuilder().build()
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
     Retrofit.Builder()
         .baseUrl(SERVER_URL)
-        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+fun provideStoreService(retrofit: Retrofit): StoreService = retrofit.create(StoreService::class.java)
 
