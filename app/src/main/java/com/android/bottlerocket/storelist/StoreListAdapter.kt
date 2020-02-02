@@ -3,12 +3,12 @@ package com.android.bottlerocket.storelist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.bottlerocket.R
 import com.android.bottlerocket.data.model.Store
-import kotlinx.android.synthetic.main.item_store.view.*
+import com.android.bottlerocket.databinding.LayoutItemStoreBinding
 
 class StoreListAdapter : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DIFF_CALLBACK) {
 
@@ -17,7 +17,8 @@ class StoreListAdapter : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DI
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        StoreViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_item_store, parent, false))
+        StoreViewHolder(LayoutItemStoreBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holderStore: StoreViewHolder, position: Int) {
         holderStore.apply {
@@ -27,12 +28,11 @@ class StoreListAdapter : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DI
         }
     }
 
-    inner class StoreViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindTo(store: Store) = with(view) {
-            item_store_name_tv.text = store.name
-            item_store_address_value_tv.text = store.address
-            item_store_phone_value_tv.text = store.phone
-            setOnClickListener(onClickListener)
+    inner class StoreViewHolder(private val binding: LayoutItemStoreBinding)
+        : RecyclerView.ViewHolder(binding.root) {
+        fun bindTo(item: Store) = binding.apply {
+            store = item
+            clickListener = onClickListener
         }
     }
 

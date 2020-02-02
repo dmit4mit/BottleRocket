@@ -1,79 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list_item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/item_store_logo_img"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
+    <data>
+        <variable
+            name="store"
+            type="com.android.bottlerocket.data.model.Store" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
 
-    <TextView
-        android:id="@+id/item_store_name_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:fontFamily="sans-serif-black"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        app:layout_constraintStart_toEndOf="@+id/item_store_logo_img"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Spar" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/list_item"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_item_store_card_height"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:onClick="@{clickListener}">
 
-    <TextView
-        android:id="@+id/item_store_phone_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/item_store_phone"
+            <ImageView
+                android:id="@+id/item_store_logo_img"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
 
-        app:layout_constraintStart_toStartOf="@id/item_store_name_tv"
-        app:layout_constraintTop_toBottomOf="@id/item_store_name_tv" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/item_store_phone_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/barrier_values"
-        app:layout_constraintTop_toTopOf="@id/item_store_phone_tv"
-        tools:text="+77777777777" />
+            <TextView
+                android:id="@+id/item_store_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:fontFamily="sans-serif-black"
+                android:maxLines="1"
 
-    <TextView
-        android:id="@+id/item_store_address_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/item_store_address"
+                app:layout_constraintStart_toEndOf="@+id/item_store_logo_img"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Spar"
+                android:text="@{store.name}"/>
 
-        app:layout_constraintStart_toStartOf="@id/item_store_phone_tv"
-        app:layout_constraintTop_toBottomOf="@id/item_store_phone_tv" />
+            <TextView
+                android:id="@+id/item_store_phone_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/item_store_phone"
 
-    <TextView
-        android:id="@+id/item_store_address_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/barrier_values"
-        app:layout_constraintTop_toTopOf="@id/item_store_address_tv"
-        tools:text="Nizhny Novgorod" />
+                app:layout_constraintStart_toStartOf="@id/item_store_name_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_store_name_tv" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier_values"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="right"
-        app:constraint_referenced_ids="item_store_address_tv,item_store_phone_tv"
-        tools:layout_editor_absoluteX="395dp"
-        tools:layout_editor_absoluteY="16dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/item_store_phone_value_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/barrier_values"
+                app:layout_constraintTop_toTopOf="@id/item_store_phone_tv"
+                android:text="@{store.phone}"
+                tools:text="+77777777777" />
+
+            <TextView
+                android:id="@+id/item_store_address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/item_store_address"
+
+                app:layout_constraintStart_toStartOf="@id/item_store_phone_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_store_phone_tv" />
+
+            <TextView
+                android:id="@+id/item_store_address_value_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/barrier_values"
+                app:layout_constraintTop_toTopOf="@id/item_store_address_tv"
+                android:text="@{store.address}"
+                tools:text="Nizhny Novgorod" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_values"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="right"
+                app:constraint_referenced_ids="item_store_address_tv,item_store_phone_tv"
+                tools:layout_editor_absoluteX="395dp"
+                tools:layout_editor_absoluteY="16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
+
