@@ -61,7 +61,7 @@ class StoreListFragment : Fragment(), StoreListAdapter.StoreListClickListener {
 
     private fun showDetailFragment(storeId: Int) {
         parentFragmentManager.beginTransaction()
-            .replace(R.id.activity_main_container, StoreDetailFragment.newInstance(storeId))
+            .replace(R.id.activity_main_content, StoreDetailFragment.newInstance(storeId))
             .addToBackStack(null)
             .commit()
     }

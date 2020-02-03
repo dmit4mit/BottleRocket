@@ -21,7 +21,6 @@ class StoreListAdapter(private val storeListClickListener: StoreListClickListene
         storeViewHolder.apply {
             val item = getItem(position)
             bindTo(item)
-            itemView.tag = item
         }
     }
 

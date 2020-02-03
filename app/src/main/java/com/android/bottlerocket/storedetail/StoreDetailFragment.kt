@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.databinding.FragmentDetailStoreBinding
-import com.android.bottlerocket.storelist.StoreListFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StoreDetailFragment : Fragment() {
@@ -21,13 +18,12 @@ class StoreDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailStoreBinding.inflate(inflater, container, false)
-//        binding.store = Store(12, "sda", "dsa", 231, "dsa", "dsa","dsad",
-//            "dsad", "dsad", "dsa")
-//        binding.apply {
-//            val storeId = arguments?.getInt(STORE_ID_KEY)!!
-//            lifecycleOwner = this@StoreDetailFragment
-//            store = viewModel.getStore(storeId)
-//        }
+        val storeId = arguments?.getInt(STORE_ID_KEY)!!
+        binding.apply {
+            lifecycleOwner = this@StoreDetailFragment
+            store = viewModel.getStore(storeId)
+        }
+        binding.executePendingBindings()
 
         return binding.root
     }

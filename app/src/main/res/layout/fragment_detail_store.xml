@@ -16,18 +16,8 @@
         android:layout_height="match_parent"
         android:padding="@dimen/margin_large">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/detail_toolbar"-->
-<!--            style="@style/Theme.AppCompat.Light.DarkActionBar"-->
-<!--            android:background="@color/colorPrimary"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="@dimen/detail_toolbar_height"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/detail_store_logo_img"
             android:layout_width="match_parent"
             android:layout_height="0dp"
 
@@ -35,6 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:imageUrl="@{store.storeLogoURL}"
             tools:srcCompat="@tools:sample/avatars" />
 
 
@@ -49,7 +40,7 @@
             tools:text="Macy's"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_store_logo_img" />
 
         <TextView
             android:id="@+id/detail_phone_tv"
@@ -132,7 +123,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             style="@style/detail_text_value_style"
-            android:text="@{store.zipcode}"
+            android:text="@{Integer.toString(store.zipcode)}"
 
             app:layout_constraintTop_toTopOf="@id/detail_zipcode"
             app:layout_constraintStart_toEndOf="@id/barrier_values"
@@ -224,12 +215,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             style="@style/detail_text_value_style"
-            android:text="@{store.storeID}"
+            android:text="@{Integer.toString(store.storeID)}"
 
             app:layout_constraintTop_toTopOf="@id/detail_store_id"
             app:layout_constraintStart_toEndOf="@id/barrier_values"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="-12.33212"
+            tools:text="123"
             />
 
 
