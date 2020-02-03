@@ -29,4 +29,8 @@ class StoreRepository(
             }
         }
     }
+
+    fun getStoreById(storeId: Int) = liveData(Dispatchers.IO) {
+        emitSource(storeDao.getById(storeId))
+    }
 }

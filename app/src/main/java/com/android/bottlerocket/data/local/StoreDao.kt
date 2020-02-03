@@ -12,6 +12,9 @@ interface StoreDao {
     @Query("SELECT * FROM store")
     fun getAll(): LiveData<List<Store>>
 
+    @Query("SELECT * FROM store WHERE store_id == :storeId")
+    fun getById(storeId: Int): LiveData<Store>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(stores: List<Store>)
 }

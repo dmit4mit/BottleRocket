@@ -7,4 +7,5 @@
     <string name="fragment_detail_state">State:</string>
     <string name="fragment_detail_latitude">Latitude:</string>
     <string name="fragment_detail_longitude">Longitude:</string>
+    <string name="fragment_detail_store_id">Store ID:</string>
 </resources>

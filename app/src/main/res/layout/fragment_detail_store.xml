@@ -14,15 +14,25 @@
         android:layout_height="match_parent"
         android:padding="@dimen/margin_large">
 
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/detail_toolbar"-->
+<!--            style="@style/Theme.AppCompat.Light.DarkActionBar"-->
+<!--            android:background="@color/colorPrimary"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/detail_toolbar_height"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
 
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
 
@@ -31,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"
-            android:fontFamily="sans-serif-black"
+            style="@style/detail_text_value_style"
+            android:textSize="20sp"
             android:text="@{store.name}"
             tools:text="Macy's"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,9 +53,9 @@
             android:id="@+id/detail_phone_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
+            style="@style/detail_text_style"
             android:text="@string/item_store_phone"
-            app:layout_goneMarginTop="@dimen/margin_large"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detail_store_name" />
@@ -53,8 +64,7 @@
             android:id="@+id/detail_phone_value_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:maxLines="1"
+            style="@style/detail_text_value_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_values"
             app:layout_constraintTop_toTopOf="@id/detail_phone_tv"
@@ -65,7 +75,7 @@
             android:id="@+id/detail_address_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            style="@style/detail_text_style"
             android:text="@string/item_store_address"
 
             app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +85,7 @@
             android:id="@+id/detail_address_value_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:maxLines="2"
+            style="@style/detail_text_value_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_values"
             app:layout_constraintTop_toTopOf="@id/detail_address_tv"
@@ -87,7 +96,7 @@
             android:id="@+id/detail_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            style="@style/detail_text_style"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detail_address_tv"
@@ -98,9 +107,8 @@
             android:id="@+id/detail_city_value_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_large"
-            android:maxLines="1"
-
+            style="@style/detail_text_value_style"
+            android:text="@{store.city}"
             app:layout_constraintTop_toTopOf="@id/detail_city"
             app:layout_constraintStart_toEndOf="@id/barrier_values"
             app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +181,7 @@
             app:layout_constraintTop_toTopOf="@id/detail_latitude"
             app:layout_constraintStart_toEndOf="@id/barrier_values"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="FL"
+            tools:text="83.12312"
             />
 
         <TextView
@@ -196,7 +204,30 @@
             app:layout_constraintTop_toTopOf="@id/detail_longitude"
             app:layout_constraintStart_toEndOf="@id/barrier_values"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="FL"
+            tools:text="-12.33212"
+            />
+
+        <TextView
+            android:id="@+id/detail_store_id"
+            style="@style/detail_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/fragment_detail_store_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_longitude" />
+
+        <TextView
+            android:id="@+id/detail_store_id_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            android:text="@{store.storeID}"
+
+            app:layout_constraintTop_toTopOf="@id/detail_store_id"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="-12.33212"
             />
 
 
@@ -205,7 +236,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="right"
-            app:constraint_referenced_ids="detail_address_tv,detail_phone_tv"
+            app:constraint_referenced_ids="detail_address_tv,detail_phone_tv,detail_city,detail_state,detail_zipcode,detail_longitude,detail_latitude,detail_store_id"
             tools:layout_editor_absoluteX="395dp"
             tools:layout_editor_absoluteY="16dp" />
 
