@@ -9,15 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.bottlerocket.R
 import com.android.bottlerocket.common.Result
-import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.databinding.FragmentStoreListBinding
 import com.android.bottlerocket.storedetail.StoreDetailFragment
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class StoreListFragment : Fragment() {
+class StoreListFragment : Fragment(), StoreListAdapter.StoreListClickListener {
     private val viewModel: StoreListViewModel by viewModel()
     private lateinit var binding: FragmentStoreListBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +26,7 @@ class StoreListFragment : Fragment() {
     ): View? {
         binding = FragmentStoreListBinding.inflate(inflater, container, false)
 
-        val listAdapter = StoreListAdapter(View.OnClickListener {  })
+        val listAdapter = StoreListAdapter(this)
         subscribeAdapter(listAdapter)
         with(binding.fragmentStoreListRecycleView) {
             addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.margin_normal).toInt()))
@@ -36,6 +36,10 @@ class StoreListFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onStoreItemClick(storeId: Int) {
+        showDetailFragment(storeId)
     }
 
     private fun subscribeAdapter(listAdapter: StoreListAdapter) {
@@ -55,9 +59,9 @@ class StoreListFragment : Fragment() {
         })
     }
 
-    private fun showDetailFragment(store: Store) {
+    private fun showDetailFragment(storeId: Int) {
         parentFragmentManager.beginTransaction()
-            .replace(R.id.activity_main_container, StoreDetailFragment.newInstance())
+            .replace(R.id.activity_main_container, StoreDetailFragment.newInstance(storeId))
             .addToBackStack(null)
             .commit()
     }
@@ -73,15 +77,9 @@ class StoreListFragment : Fragment() {
     private fun hideProgressBar() {
         binding.fragmentStoreListProgressBar.visibility = View.GONE
     }
-
-    interface StoreListClickListener {
-        fun onClick(storeListItem: StoreListItem) {
-
-        }
-    }
-
     companion object {
         fun newInstance() =
             StoreListFragment()
+
     }
 }

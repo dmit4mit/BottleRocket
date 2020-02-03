@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.databinding.FragmentDetailStoreBinding
 import com.android.bottlerocket.storelist.StoreListFragment
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -20,18 +21,21 @@ class StoreDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailStoreBinding.inflate(inflater, container, false)
+//        binding.store = Store(12, "sda", "dsa", 231, "dsa", "dsa","dsad",
+//            "dsad", "dsad", "dsa")
+//        binding.apply {
+//            val storeId = arguments?.getInt(STORE_ID_KEY)!!
+//            lifecycleOwner = this@StoreDetailFragment
+//            store = viewModel.getStore(storeId)
+//        }
 
-        val storeId = arguments?.getInt(STORE_ID_KEY)
-        viewModel.store.observe(viewLifecycleOwner, Observer { store ->
-            binding.store = store
-        })
         return binding.root
     }
 
     companion object {
         const val STORE_ID_KEY = "storeId"
 
-        fun newInstance(storeId: Int) = StoreListFragment().apply {
+        fun newInstance(storeId: Int) = StoreDetailFragment().apply {
             arguments = Bundle().apply {
                 putInt(STORE_ID_KEY, storeId)
             }

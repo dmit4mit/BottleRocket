@@ -4,9 +4,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <data>
+        <import type="androidx.lifecycle.LiveData" />
+        <import type="com.android.bottlerocket.data.model.Store"/>
         <variable
             name="store"
-            type="com.android.bottlerocket.data.model.Store" />
+            type="LiveData&lt;Store>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
