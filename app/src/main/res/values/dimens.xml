@@ -5,4 +5,5 @@
     <dimen name="margin_normal">8dp</dimen>
     <dimen name="margin_large">16dp</dimen>
     <dimen name="detail_toolbar_height">52dp</dimen>
+    <dimen name="layout_item_store_card_corner_radius">25dp</dimen>
 </resources>

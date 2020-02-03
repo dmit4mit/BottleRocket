@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"
             style="@style/detail_text_value_style"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:text="@{store.name}"
             tools:text="Macy's"
             app:layout_constraintEnd_toEndOf="parent"

@@ -15,7 +15,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        app:cardCornerRadius="@dimen/layout_item_store_card_corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/list_item"
@@ -42,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:fontFamily="sans-serif-black"
+                android:textSize="20sp"
                 android:maxLines="1"
 
                 app:layout_constraintStart_toEndOf="@+id/item_store_logo_img"
