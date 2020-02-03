@@ -1,6 +1,8 @@
 package com.android.bottlerocket.data.remote
 
-import com.android.bottlerocket.data.Result
+import com.android.bottlerocket.common.Result
+import com.android.bottlerocket.data.model.Store
+import com.android.bottlerocket.data.model.StoreList
 import retrofit2.Response
 import timber.log.Timber
 

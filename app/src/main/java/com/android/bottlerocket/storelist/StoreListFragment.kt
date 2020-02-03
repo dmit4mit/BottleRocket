@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.bottlerocket.R
-import com.android.bottlerocket.data.Result
+import com.android.bottlerocket.common.Result
 import com.android.bottlerocket.databinding.FragmentStoreListBinding
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -40,7 +40,7 @@ class StoreListFragment : Fragment() {
         viewModel.storeList.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Result.Status.SUCCESS -> {
-                    listAdapter.submitList(result.data?.stores)
+                    listAdapter.submitList(result.data)
                     hideProgressBar()
                 }
                 Result.Status.ERROR -> {

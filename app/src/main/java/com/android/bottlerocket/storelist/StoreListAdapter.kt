@@ -3,10 +3,10 @@ package com.android.bottlerocket.storelist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.databinding.LayoutItemStoreBinding
 
@@ -20,8 +20,8 @@ class StoreListAdapter : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DI
         StoreViewHolder(LayoutItemStoreBinding.inflate(
             LayoutInflater.from(parent.context), parent, false))
 
-    override fun onBindViewHolder(holderStore: StoreViewHolder, position: Int) {
-        holderStore.apply {
+    override fun onBindViewHolder(storeViewHolder: StoreViewHolder, position: Int) {
+        storeViewHolder.apply {
             val item = getItem(position)
             bindTo(item)
             itemView.tag = item
@@ -33,6 +33,7 @@ class StoreListAdapter : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DI
         fun bindTo(item: Store) = binding.apply {
             store = item
             clickListener = onClickListener
+            binding.itemStoreLogoImg.load(item.storeLogoURL)
         }
     }
 
