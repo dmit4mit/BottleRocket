@@ -10,12 +10,7 @@ import coil.api.load
 import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.databinding.LayoutItemStoreBinding
 
-class StoreListAdapter : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DIFF_CALLBACK) {
-
-    private val onClickListener: View.OnClickListener = View.OnClickListener {
-        val item = it.tag as Store
-    }
-
+class StoreListAdapter(val onClickListener: View.OnClickListener) : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         StoreViewHolder(LayoutItemStoreBinding.inflate(
             LayoutInflater.from(parent.context), parent, false))
@@ -34,6 +29,7 @@ class StoreListAdapter : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DI
             store = item
             clickListener = onClickListener
             binding.itemStoreLogoImg.load(item.storeLogoURL)
+            binding.executePendingBindings()
         }
     }
 

@@ -7,4 +7,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="detail_text_value_style" parent="TextAppearance.AppCompat">
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+    </style>
+
+    <style name="detail_text_style" parent="TextAppearance.AppCompat">
+        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

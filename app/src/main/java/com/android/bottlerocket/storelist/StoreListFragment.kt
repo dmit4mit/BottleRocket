@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.bottlerocket.R
 import com.android.bottlerocket.common.Result
+import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.databinding.FragmentStoreListBinding
+import com.android.bottlerocket.storedetail.StoreDetailFragment
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StoreListFragment : Fragment() {
-    val viewModel: StoreListViewModel by viewModel()
+    private val viewModel: StoreListViewModel by viewModel()
     private lateinit var binding: FragmentStoreListBinding
 
     override fun onCreateView(
@@ -24,7 +27,7 @@ class StoreListFragment : Fragment() {
     ): View? {
         binding = FragmentStoreListBinding.inflate(inflater, container, false)
 
-        val listAdapter = StoreListAdapter()
+        val listAdapter = StoreListAdapter(View.OnClickListener {  })
         subscribeAdapter(listAdapter)
         with(binding.fragmentStoreListRecycleView) {
             addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.margin_normal).toInt()))
@@ -51,6 +54,13 @@ class StoreListFragment : Fragment() {
                 Result.Status.LOADING -> showProgressBar()
             }
         })
+    }
+
+    private fun showDetailFragment(store: Store) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.activity_main_container, StoreDetailFragment.newInstance())
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun showSnackbar(message: String) {
