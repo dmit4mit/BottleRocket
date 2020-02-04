@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <data>
+        <import type="androidx.lifecycle.LiveData" />
+        <import type="com.android.bottlerocket.data.model.Store"/>
+        <variable
+            name="store"
+            type="LiveData&lt;Store>" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_large">
+
+        <ImageView
+            android:id="@+id/detail_store_logo_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageUrl="@{store.storeLogoURL}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+        <TextView
+            android:id="@+id/detail_store_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            style="@style/detail_text_value_style"
+            android:textSize="30sp"
+            android:text="@{store.name}"
+            tools:text="Macy's"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_store_logo_img" />
+
+        <TextView
+            android:id="@+id/detail_phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            style="@style/detail_text_style"
+            android:text="@string/item_store_phone"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_store_name" />
+
+        <TextView
+            android:id="@+id/detail_phone_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintTop_toTopOf="@id/detail_phone_tv"
+            android:text="@{store.phone}"
+            tools:text="+77777777777" />
+
+        <TextView
+            android:id="@+id/detail_address_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_style"
+            android:text="@string/item_store_address"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_phone_tv" />
+
+        <TextView
+            android:id="@+id/detail_address_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintTop_toTopOf="@id/detail_address_tv"
+            android:text="@{store.address}"
+            tools:text="Nizhny Novgorod" />
+
+        <TextView
+            android:id="@+id/detail_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_style"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_address_tv"
+            android:text="@string/fragment_detail_city"
+            />
+
+        <TextView
+            android:id="@+id/detail_city_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            android:text="@{store.city}"
+            app:layout_constraintTop_toTopOf="@id/detail_city"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Balahna"
+            />
+
+        <TextView
+            android:id="@+id/detail_zipcode"
+            style="@style/detail_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/fragment_detail_zipcode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_city" />
+
+        <TextView
+            android:id="@+id/detail_zipcode_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            android:text="@{Integer.toString(store.zipcode)}"
+
+            app:layout_constraintTop_toTopOf="@id/detail_zipcode"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="123456"
+            />
+
+        <TextView
+            android:id="@+id/detail_state"
+            style="@style/detail_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/fragment_detail_state"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_zipcode" />
+
+        <TextView
+            android:id="@+id/detail_state_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            android:text="@{store.state}"
+
+            app:layout_constraintTop_toTopOf="@id/detail_state"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="FL"
+            />
+
+        <TextView
+            android:id="@+id/detail_latitude"
+            style="@style/detail_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/fragment_detail_latitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_state" />
+
+        <TextView
+            android:id="@+id/detail_latitude_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            android:text="@{store.latitude}"
+
+            app:layout_constraintTop_toTopOf="@id/detail_latitude"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="83.12312"
+            />
+
+        <TextView
+            android:id="@+id/detail_longitude"
+            style="@style/detail_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/fragment_detail_longitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_latitude" />
+
+        <TextView
+            android:id="@+id/detail_longitude_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            android:text="@{store.longitude}"
+
+            app:layout_constraintTop_toTopOf="@id/detail_longitude"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="-12.33212"
+            />
+
+        <TextView
+            android:id="@+id/detail_store_id"
+            style="@style/detail_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/fragment_detail_store_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_longitude" />
+
+        <TextView
+            android:id="@+id/detail_store_id_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/detail_text_value_style"
+            android:text="@{Integer.toString(store.storeID)}"
+
+            app:layout_constraintTop_toTopOf="@id/detail_store_id"
+            app:layout_constraintStart_toEndOf="@id/barrier_values"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="123"
+            />
+
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="detail_address_tv,detail_phone_tv,detail_city,detail_state,detail_zipcode,detail_longitude,detail_latitude,detail_store_id"
+            tools:layout_editor_absoluteX="395dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

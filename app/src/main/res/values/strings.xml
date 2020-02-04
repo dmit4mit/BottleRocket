@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BottleRocket</string>
+    <string name="item_store_address">Address:</string>
+    <string name="item_store_phone">Phone:</string>
+    <string name="fragment_detail_city">City:</string>
+    <string name="fragment_detail_zipcode">Zipcode:</string>
+    <string name="fragment_detail_state">State:</string>
+    <string name="fragment_detail_latitude">Latitude:</string>
+    <string name="fragment_detail_longitude">Longitude:</string>
+    <string name="fragment_detail_store_id">Store ID:</string>
 </resources>
