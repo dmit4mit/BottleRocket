@@ -1,9 +1,12 @@
 package com.android.bottlerocket.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.android.bottlerocket.common.Result
 import com.android.bottlerocket.data.local.StoreDao
+import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.data.remote.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
 
@@ -30,7 +33,7 @@ class StoreRepository(
         }
     }
 
-    fun getStoreById(storeId: Int) = liveData(Dispatchers.IO) {
-        emitSource(storeDao.getById(storeId))
+    fun getStoreById(storeId: Int): LiveData<Store> = Transformations.map(stores) { result ->
+        result.data!!.find { it.storeID == storeId }
     }
 }

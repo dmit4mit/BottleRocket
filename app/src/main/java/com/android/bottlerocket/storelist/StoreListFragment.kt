@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.bottlerocket.R
+import com.android.bottlerocket.common.MarginItemDecoration
 import com.android.bottlerocket.common.Result
 import com.android.bottlerocket.databinding.FragmentStoreListBinding
 import com.android.bottlerocket.storedetail.StoreDetailFragment
@@ -26,12 +27,15 @@ class StoreListFragment : Fragment(), StoreListAdapter.StoreListClickListener {
     ): View? {
         binding = FragmentStoreListBinding.inflate(inflater, container, false)
 
-        val listAdapter = StoreListAdapter(this)
+        val listAdapter = StoreListAdapter().apply {
+            onItemClickListener = { onStoreItemClick(it) }
+        }
         subscribeAdapter(listAdapter)
         with(binding.fragmentStoreListRecycleView) {
             addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.margin_normal).toInt()))
             layoutManager = LinearLayoutManager(context)
             adapter = listAdapter
+            setItemViewCacheSize(20)
             setHasFixedSize(true)
         }
 
@@ -77,9 +81,8 @@ class StoreListFragment : Fragment(), StoreListAdapter.StoreListClickListener {
     private fun hideProgressBar() {
         binding.fragmentStoreListProgressBar.visibility = View.GONE
     }
-    companion object {
-        fun newInstance() =
-            StoreListFragment()
 
+    companion object {
+        fun newInstance() = StoreListFragment()
     }
 }

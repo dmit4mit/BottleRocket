@@ -10,8 +10,9 @@ import coil.api.load
 import com.android.bottlerocket.data.model.Store
 import com.android.bottlerocket.databinding.LayoutItemStoreBinding
 
-class StoreListAdapter(private val storeListClickListener: StoreListClickListener)
+class StoreListAdapter
     : ListAdapter<Store, StoreListAdapter.StoreViewHolder>(DIFF_CALLBACK) {
+    var onItemClickListener: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         StoreViewHolder(LayoutItemStoreBinding.inflate(
@@ -28,14 +29,10 @@ class StoreListAdapter(private val storeListClickListener: StoreListClickListene
         : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(item: Store) = binding.apply {
             store = item
-            clickListener = createOnClickListener(item.storeID)
+            clickListener = View.OnClickListener { onItemClickListener?.invoke(item.storeID) }
             binding.itemStoreLogoImg.load(item.storeLogoURL)
             binding.executePendingBindings()
         }
-    }
-
-    private fun createOnClickListener(storeId: Int) = View.OnClickListener {
-        storeListClickListener.onStoreItemClick(storeId)
     }
 
     interface StoreListClickListener {

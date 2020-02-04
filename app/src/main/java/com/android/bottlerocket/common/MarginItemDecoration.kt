@@ -1,4 +1,4 @@
-package com.android.bottlerocket.storelist
+package com.android.bottlerocket.common
 
 import android.graphics.Rect
 import android.view.View
